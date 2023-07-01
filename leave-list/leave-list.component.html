@@ -1,0 +1,40 @@
+
+<h1>Leave List</h1>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Enployee Name</th>
+      <th scope="col">Email ID</th>
+      <th scope="col">Leave Type</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">Mobile Number</th>
+      <!-- <th scope="col">Status</th> -->
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <th scope="row">{{item.id}}</th>
+      <td >{{item.employeeName}}</td>
+      <td >{{item.email}}</td>
+      <td >{{item.leaveType}}</td>
+      <td >{{item.startDate}}</td>
+      <td >{{item.endDate}}</td>
+      <td >{{item.mobileNumber}}</td>
+      <!-- <button style="margin-left: 2%;">Approve</button>
+      <button style="margin-left: 2%;">Reject</button> -->
+      <button class="btn1" routerLink="['/leaveDetail', item.id]" (click)="leaveDetail(item.id)" style="margin-left: 2%;" >View</button>
+      <button class="btn2" routerLink="['/leaveEdit', item.id]" (click)="editLeave(item.id)" style="margin-left: 2%;">Edit</button>
+      <button class="btn3" (click)="leaveDelete(item.id)" style="margin-left: 2%;">Delete</button>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+<br />
+<button (click)="back()" style="background-color:green;">Back</button>

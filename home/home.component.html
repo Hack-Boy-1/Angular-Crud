@@ -1,0 +1,27 @@
+<h2>Login Form</h2>
+
+<form [formGroup]="loginForm">
+  <div class="form-group col-5">
+    <label><strong>Employee Name:</strong></label>
+    <input type="text" formControlName="employeeName" class="form-control" style="width: 10%;margin-left: 3%"
+      [ngClass]="{ 'is-invalid': submitted && f.employeeName.errors }" />
+    <div *ngIf="submitted && f.employeeName.errors" class="invalid-feedback">
+      <div *ngIf="f.employeeName.errors.required" style="color: red;">Employee Name is required</div>
+    </div>
+  </div>
+  <br />
+  <div class="form-group col-5">
+    <label><strong>Password:</strong></label>
+    <input type="text" formControlName="password" class="form-control" style="width: 10%;margin-left: 6%"
+      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required" style="color: red;">Password is required</div>
+    </div>
+  </div>
+  <br />
+  <div class="text-center" style="margin-left: 4%;">
+    <button type="button" class="btn btn-primary mr-1" style="margin-right: 3%; background-color: rgb(97, 97, 236);"
+      (click)="onSubmit()">Submit</button>
+    <button class="btn btn-secondary" type="reset" (click)="onReset()" style="background-color: red;">Cancel</button>
+  </div>
+</form>

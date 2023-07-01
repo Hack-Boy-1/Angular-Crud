@@ -1,0 +1,98 @@
+<!-- main app container -->
+<h1>Leave Form</h1>
+<div>
+  <h3>
+    Leave Balance
+  </h3>
+<div *ngFor="let leave of data">
+  <Label style="color: red;">{{leave.leaveType}}:-<strong style="color: green;">{{leave.balance}}</strong></Label>
+</div>
+</div>
+<br/>
+<br/>
+<div class="card m-3" >
+    <div class="card-body">
+      <form [formGroup]="leaveForm" >
+        <div class="form-row">
+          <div class="form-group col">
+            <label><strong>Leave Type:</strong></label>
+            <select formControlName="leaveType" class="form-control"style="width: 11%; margin-left: 5%"
+              [ngClass]="{ 'is-invalid': submitted && f.leaveType.errors }">
+              <option value="">Select Leave Type</option>
+              <option *ngFor="let item of data" [value]="item.leaveType">{{item.leaveType}}</option>
+              <!-- <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+              <option value="Miss">Miss</option>
+              <option value="Ms">Ms</option> -->
+            </select>
+            <div *ngIf="submitted && f.leaveType.errors" class="invalid-feedback">
+              <div *ngIf="f.leaveType.errors.required" style="color: red;">Leave Type is required</div>
+            </div>
+          </div>
+          <br />
+          <div class="form-group col-5">
+            <label><strong>Employee Name:</strong></label>
+            <input type="text" formControlName="employeeName" class="form-control"style="width: 10%;margin-left: 3%"
+              [ngClass]="{ 'is-invalid': submitted && f.employeeName.errors }" />
+            <div *ngIf="submitted && f.employeeName.errors" class="invalid-feedback">
+              <div *ngIf="f.employeeName.errors.required" style="color: red;">Employee Name is required</div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+          <div class="form-group col">
+            <label><strong>Start Date:</strong></label>
+            <input type="date" formControlName="startDate" class="form-control"style="width: 10%;margin-left: 5.9%"
+              [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" />
+            <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+              <div *ngIf="f.startDate.errors.required" style="color: red;">Start Date is required</div>
+              <div *ngIf="f.startDate.errors.pattern" style="color: red;">Date of Birth must be a valid date in the format YYYY-MM-DD</div>
+            </div>
+          </div>
+          <br />
+          <div class="form-group col">
+            <label><strong>End Date:</strong></label>
+            <input type="date" formControlName="endDate" class="form-control"style="width: 10%;margin-left: 5.9%"
+              [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }" />
+            <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+              <div *ngIf="f.endDate.errors.required" style="color: red;">End Date is required</div>
+              <div *ngIf="f.endDate.errors.pattern" style="color: red;">Date of Birth must be a valid date in the format YYYY-MM-DD</div>
+            </div>
+          </div>
+          <br />
+          <div class="form-group col">
+            <label><strong>Email:</strong></label>
+            <input type="text" formControlName="email" class="form-control" style="width: 10%;margin-left: 7%"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required" style="color: red;">Email is required</div>
+              <div *ngIf="f.email.errors.email" style="color: red;">Email must be a valid email address</div>
+            </div>
+          </div>
+          <br />
+          <div class="form-group col-5">
+            <label><strong>Mobile Number:</strong></label>
+            <input type="number" formControlName="mobileNumber" class="form-control"style="width: 10%;margin-left: 3%"
+              [ngClass]="{ 'is-invalid': submitted && f.mobileNumber.errors }" />
+            <div *ngIf="submitted && f.mobileNumber.errors" class="invalid-feedback">
+              <div *ngIf="f.mobileNumber.errors.required" style="color: red;">Number is required</div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="form-row">
+        </div>
+        <br />
+        <div class="text-center" style="margin-left: 4%;">
+          <button *ngIf="!isUpdateActive" type="button" class="btn btn-primary mr-1" style="margin-right: 3%; background-color: rgb(97, 97, 236);" (click)="onSubmit()">Submit</button>
+          <button *ngIf="isUpdateActive" type="button" class="btn btn-primary mr-1" (click)="onUpdate()" style="background-color: rgb(97, 97, 236);margin-right: 3%">Update</button>
+          <button class="btn btn-secondary" type="reset" (click)="onReset()" style="background-color: red;">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <br/>
+<button (click)="back()" style="margin-left: 5%; background-color: rgb(23, 143, 97);">Back</button>
+<button (click)="viewLeaveList()" style="margin-left: 3%; background-color: yellow;">View All Leave</button>
